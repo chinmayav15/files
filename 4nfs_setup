@@ -1,0 +1,14 @@
+yum install -y nfs-utils
+systemctl start nfs-server rpcbind
+systemctl enable nfs-server rpcbind
+mkdir /OSE_{mysql,registry,wordpress,metrics,gogs,postgres}
+chmod 777 /OSE_{mysql,registry,wordpress,metrics,gogs,postgres}
+vi /etc/exports
+/OSE_gogs	*(rw,async,all_squash)
+/OSE_mysql	*(rw,async,all_squash)
+/OSE_postgres	*(rw,async,all_squash)
+/OSE_wordpress	*(rw,async,all_squash)
+/OSE_metrics	*(rw,async,all_squash)
+/OSE_registry	*(rw,async,all_squash)
+
+exportfs -r 
