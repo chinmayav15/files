@@ -1,0 +1,23 @@
+apiVersion: "v1"
+kind: "LimitRange"
+metadata:
+  name: ex280-quotalimit
+spec:
+  limits:
+    - type: "Pod"
+      max:
+        cpu: "500" 
+        memory: "500Mi"
+      min:
+        cpu: "5m"
+        memory: "300Mi"
+    - type: "Container"
+      max:
+        cpu: "500"
+        memory: "600Mi"
+      min:
+        cpu: "100m"
+        memory: "200Mi"
+      defaultRequest:
+        cpu: "300m"
+        memory: "400Mi"
