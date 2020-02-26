@@ -6,11 +6,11 @@ spec:
   capacity:
     storage: 2Gi
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   nfs:
     path: /OSE_registry
-    server: workstation.lab.example.com
-  persistentVolumeReclaimPolicy: Recycle
+    server: localhost
+  persistentVolumeReclaimPolicy: Retain
   claimRef:
     name: exam-registry-claim
     namespace: default
