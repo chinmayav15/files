@@ -1,0 +1,77 @@
+    1  launch.sh
+    2  git clone https://github.com/chinmayav15/files/
+    3  ll
+    4  cd files/
+    5  ll
+    6  cat 4nfs_setup 
+    7  systemctl start nfs-server rpcbind
+    8  systemctl enable nfs-server rpcbind
+    9  mkdir /OSE_{mysql,registry,wordpress,metrics,gogs,postgres}
+   10  chmod 777 /OSE_{mysql,registry,wordpress,metrics,gogs,postgres}
+   11  vi /etc/exports
+   12  exportfs -r
+   13  vi pv_create.yml
+   14  ll
+   15  oc create -f pv_create.yml 
+   16  oc get pv
+   17  oc delete pvwp-pv
+   18  oc delete wp-pv
+   19  oc delete pv wp-pv
+   20  vi pv_create.yml 
+   21  oc create -f pv_create.yml 
+   22  oc get pv
+   23  cp pv_create.yml pv_creatmysql.yml
+   24  vi pv_creatmysql.yml 
+   25  oc create -f pv_creatmysql.yml 
+   26  oc get pv
+   27  oc desribe is mysql -n openshift
+   28  oc describe is mysql -n openshift
+   29  oc new-project wordpress-project
+   30  oc new-app --name=mysql --docker-image=mysql:5.6 --env MYSQL_ROOT_PASSWORD=redhat --env MYSQL_USER=user1 --env MYSQL_PASSWORD=redhat --env MYSQL_DATABASE=mydata
+   31  oc get pvc
+   32  oc get pv
+   33  oc get pvc
+   34  oc get pod
+   35  oc get dc
+   36  oc describe dc\mysql
+   37  oc describe dc/mysql
+   38  oc get all
+   39  oc get pv
+   40  oc delete pv mysql-pv
+   41  vi pv_creatmysql.yml 
+   42  oc describe dc/mysql | grep -A4 Volume
+   43  vi pv_creatmysql.yml 
+   44  oc new-project test
+   45  oc create -f pv_creatmysql.yml 
+   46  oc get pv
+   47  oc new-app --name=mysql --docker-image=mysql:5.6 --env MYSQL_ROOT_PASSWORD=redhat --env MYSQL_USER=user1 --env MYSQL_PASSWORD=redhat --env MYSQL_DATABASE=mydata
+   48  oc get events -w
+   49  oc get pvc
+   50  oc get pods
+   51  oc describe dc/mysql | grep -A4 Volume
+   52  oc get pv
+   53  oc delete pv mysql-pv
+   54  vi pv_creatmysql.yml 
+   55  oc create -f pv_creatmysql.yml 
+   56  oc get pod
+   57  ocget dc
+   58  oc get dc
+   59  oc set volume dc/mysql --add --overwrite --name=mysql-volume-1 -t pvc --claim-name=mysql-claim-1 --claim-size=1Gi
+   60  oc get pvc
+   61  oc get pv
+   62  oc describe dc mysql
+   63  oc new-app --name wordpress --docker-image=wordpress --env DB_HOST=mysql --env DB_PASSWORD=redhat
+   64  oc get dc
+   65  oc describe dc/wordpress
+   66  oc set volume dc/wordpres --add --overwrite --name=wordpress-volume-1 -t pvc --claim-name=wordpress-claim-1 --claim-size=1Gi
+   67  oc set volume dc/wordpress --add --overwrite --name=wordpress-volume-1 -t pvc --claim-name=wordpress-claim-1 --claim-size=1Gi
+   68  oc get pvc
+   69  oc get pv
+   70  ll
+   71  vi mysql-volume-1:
+   72  vi mysql-volume-1
+   73  vi pv_create.yml
+   74  oc get pvc
+   75  oc delete pvc wordpress-claim-1
+   76  oc get pod
+   77  history > histry-wordpress
