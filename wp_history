@@ -1,0 +1,86 @@
+    1  launch.sh
+    2  git clone https://github.com/chinmayav15/giles
+    3  git clone https://github.com/chinmayav15/files
+    4  cd files
+    5  ll
+    6  cat 4nfs_setup 
+    7  systemctl start nfs-server rpcbind
+    8  systemctl enable nfs-server rpcbind
+    9  mkdir /OSE_{mysql,registry,wordpress,metrics,gogs,postgres}
+   10  chmod 777 /OSE_{mysql,registry,wordpress,metrics,gogs,postgres}
+   11  vi /etc/exports
+   12  exportfs -r
+   13  showmount -e localhost
+   14  ll
+   15  cat 7mysql-pv.yml
+   16  vi  7mysql-pv.yml
+   17  oc create -f 7mysql-pv.yml
+   18  oc get pv
+   19  oc get pv | less
+   20  oc new-app --name=mysql --docker-image=mysql:5.6 --env MYSQL_ROOT_PASSWORD=redhat --env MYSQL_USER=greg --env MYSQL_PASSWORD=faqgreg MYSQL_DATABASE=mydata
+   21  oc get pv
+   22  oc get pod
+   23  oc get pvc
+   24  oc get pv
+   25  oc get pv | less
+   26  oc get dc
+   27  oc set volume dc/mysql --add --overwrite --name=mysql-pv -t pvc --claim-name=mysql-pvc --claim-size=2Gi --claim-mode='ReadWriteMany'
+   28  oc describe dc/mysql | grep -A4 volume
+   29  oc get pvc
+   30  oc get pv
+   31  oc get pv | less
+   32  ll
+   33  cat 7mysql-pv.yml
+   34  vi 7mysql-pv.yml
+   35  oc delete dc\mysql
+   36  oc delete dc\mysql --all
+   37  oc get dc
+   38  oc delete dc mysql
+   39  oc get pod
+   40  oc delete pv mysql-pv
+   41  oc get pvc
+   42  oc delete pvc mysql-pvc
+   43  oc get pod
+   44  oc create -f 7mysql-pv.yml 
+   45  oc new-app --name=mysql --docker-image=mysql:5.6 --env MYSQL_ROOT_PASSWORD=redhat --env MYSQL_USER=greg --env MYSQL_PASSWORD=faqgreg MYSQL_DATABASE=mydata
+   46  oc delete pvc mysql-pvc
+   47  pc delete dc mysql
+   48  oc delete dc mysql
+   49  oc get svc
+   50  oc delete svc mysql
+   51  oc new-app --name=mysql --docker-image=mysql:5.6 --env MYSQL_ROOT_PASSWORD=redhat --env MYSQL_USER=greg --env MYSQL_PASSWORD=faqgreg MYSQL_DATABASE=mydata
+   52  oc set volume dc/mysql --add --overwrite --name=mysql-pv -t pvc --claim-name=mysql-pvc --claim-size=2Gi --claim-mode='ReadWriteMany'
+   53  oc get pv
+   54  oc get pv | grep mysql
+   55  oc get pvc
+   56  ll
+   57  cat 7wp.pv.yml 
+   58  vi 7wp.pv.yml 
+   59  oc create -f 7wp.pv.yml
+   60  oc get pv
+   61  oc get pv | grep -v pv-
+   62  oc new-app --name=wordpress --docker-image=wordpress --env DB_HOST=mysql --env DB_PASSWORD=redhat
+   63  oc describe dc wordpress | grep A2 'volume'
+   64  oc describe dc wordpress | grep -A2 'volume'
+   65  oc describe dc wordpress | grep -A4 'volume'
+   66  oc get pv
+   67  oc get pv | less
+   68  oc get dc
+   69  oc set volume dc/wordpress --add --overwrite --name=wp-pv -t pvc --claim-size=2Gi --claim-name=wp-pvc --claim-mode='ReadWriteMany'
+   70  oc describe dc wordpress | grep -A4 'volume'
+   71  oc get pvc
+   72  cat 7wp.pv.yml 
+   73  cat 7mysql-pv.yml 
+   74  oc delete dc wordpress
+   75  oc delete svc wordpress
+   76  vi 7wp.pv.yml 
+   77  oc new-app --name=wordpress --docker-image=wordpress --env DB_HOST=mysql --env DB_PASSWORD=redhat
+   78  oc set volume dc/wordpress --add --overwrite --name=wp-pv -t pvc --claim-size=2Gi --claim-name=wp-pvc --claim-mode='ReadWriteMany'
+   79  oc delete pvc wp-pvc
+   80  oc get pvc
+   81  oc delete pv wp-pv
+   82  oc get pvc
+   83  oc set volume dc/wordpress --add --overwrite --name=wp-pv -t pvc --claim-size=2Gi --claim-name=wp-pvcnew --claim-mode='ReadWriteMany'
+   84  oc get pvc
+   85  history 
+   86  history > wp_history
