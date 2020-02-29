@@ -6,7 +6,7 @@ spec:
   capacity:
     storage: 2Gi
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   nfs:
     path: /OSE_mysql
-
+    server: localhost
